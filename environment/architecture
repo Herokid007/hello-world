@@ -1,0 +1,75 @@
+digraph architecture {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label=architecture nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"63e2d1eb9d264e16a0a5f6ff031531a4" [label=distribution height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/network/cloudfront.png" shape=none]
+	"75138719beb04f0696614616adfdb533" [label=Client]
+	"9bb6eacc32fd44b8b3241810dd632e75" [label="" height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/network/route-53.png" shape=none]
+	"75138719beb04f0696614616adfdb533" -> "9bb6eacc32fd44b8b3241810dd632e75" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9bb6eacc32fd44b8b3241810dd632e75" -> "63e2d1eb9d264e16a0a5f6ff031531a4" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	beeba14b4a0f43aba63361f6ae18e6b1 -> eb79d0a259324a9199edd7ececc228aa [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	beeba14b4a0f43aba63361f6ae18e6b1 -> e077e25f4fdb49d9bff044e423bf6a16 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	beeba14b4a0f43aba63361f6ae18e6b1 -> "4c1ea9f87f2e4c23afd8023289f952a7" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	eb79d0a259324a9199edd7ececc228aa -> bbc38b4e3b43462bb57e83d122d28230 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	e077e25f4fdb49d9bff044e423bf6a16 -> bbc38b4e3b43462bb57e83d122d28230 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4c1ea9f87f2e4c23afd8023289f952a7" -> bbc38b4e3b43462bb57e83d122d28230 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	bbc38b4e3b43462bb57e83d122d28230 -> "029cbbae3b5240eb957b869eae9086ec" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	bbc38b4e3b43462bb57e83d122d28230 -> "27d90c9c74ea44e5bef8acc3639a72b3" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"029cbbae3b5240eb957b869eae9086ec" -> "13bec032915d419ebd2a787140f6f44a" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"27d90c9c74ea44e5bef8acc3639a72b3" -> "13bec032915d419ebd2a787140f6f44a" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"13bec032915d419ebd2a787140f6f44a" -> "2b438debc86f498e9977c1e41450762a" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_us-east-1" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="us-east-1" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		subgraph cluster_public_subnet {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label=public_subnet labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			eb79d0a259324a9199edd7ececc228aa [label=apache_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			e077e25f4fdb49d9bff044e423bf6a16 [label=apache_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			"4c1ea9f87f2e4c23afd8023289f952a7" [label=apache_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+		}
+		subgraph cluster_private_subnet {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label=private_subnet labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"029cbbae3b5240eb957b869eae9086ec" [label=php_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			"27d90c9c74ea44e5bef8acc3639a72b3" [label=php_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			"13bec032915d419ebd2a787140f6f44a" [label=Mysql height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/database/rds.png" shape=none]
+			"2b438debc86f498e9977c1e41450762a" [label=Mysql_replica height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/database/rds.png" shape=none]
+		}
+		beeba14b4a0f43aba63361f6ae18e6b1 [label=app_elb height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/network/elastic-load-balancing.png" shape=none]
+		bbc38b4e3b43462bb57e83d122d28230 [label=app_elb height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/network/elastic-load-balancing.png" shape=none]
+	}
+	a9f03f320a0b4a1594c70f921c7764e0 -> df8d7483430d4023a68e04fc3eeead18 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a9f03f320a0b4a1594c70f921c7764e0 -> "4397849637174077bf130b99187b5dc8" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a9f03f320a0b4a1594c70f921c7764e0 -> "7118097a0cee4cfcbdadd4ea81458010" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	df8d7483430d4023a68e04fc3eeead18 -> "4ef212a4c8f8405c840a6cb87d729fd9" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4397849637174077bf130b99187b5dc8" -> "4ef212a4c8f8405c840a6cb87d729fd9" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7118097a0cee4cfcbdadd4ea81458010" -> "4ef212a4c8f8405c840a6cb87d729fd9" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4ef212a4c8f8405c840a6cb87d729fd9" -> "4243f60e531a49c6af0fe0eff21b3c89" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4ef212a4c8f8405c840a6cb87d729fd9" -> "6797e79bb3cc4fa195ef95a0cd962d5c" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4243f60e531a49c6af0fe0eff21b3c89" -> "4ab7c21b6df74dddbae5a8049501400f" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"6797e79bb3cc4fa195ef95a0cd962d5c" -> "4ab7c21b6df74dddbae5a8049501400f" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4ab7c21b6df74dddbae5a8049501400f" -> "3d8dc58e3be14697bd40f465d524ba72" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph cluster_london {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=london labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		subgraph cluster_public_subnet {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label=public_subnet labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			df8d7483430d4023a68e04fc3eeead18 [label=apache_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			"4397849637174077bf130b99187b5dc8" [label=apache_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			"7118097a0cee4cfcbdadd4ea81458010" [label=apache_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+		}
+		subgraph cluster_private_subnet {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label=private_subnet labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"4243f60e531a49c6af0fe0eff21b3c89" [label=php_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			"6797e79bb3cc4fa195ef95a0cd962d5c" [label=php_server height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/compute/ec2.png" shape=none]
+			"4ab7c21b6df74dddbae5a8049501400f" [label=Mysql height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/database/rds.png" shape=none]
+			"3d8dc58e3be14697bd40f465d524ba72" [label=Mysql_replica height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/database/rds.png" shape=none]
+		}
+		a9f03f320a0b4a1594c70f921c7764e0 [label=app_elb height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/network/elastic-load-balancing.png" shape=none]
+		"4ef212a4c8f8405c840a6cb87d729fd9" [label=app_elb height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/network/elastic-load-balancing.png" shape=none]
+	}
+	"63e2d1eb9d264e16a0a5f6ff031531a4" -> beeba14b4a0f43aba63361f6ae18e6b1 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"63e2d1eb9d264e16a0a5f6ff031531a4" -> a9f03f320a0b4a1594c70f921c7764e0 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7dfdda6f9f414591bd9f8bd093b1f9af" [label=assets height=1.9 image="/home/ec2-user/.local/lib/python3.7/site-packages/resources/aws/storage/simple-storage-service-s3.png" shape=none]
+	"029cbbae3b5240eb957b869eae9086ec" -> "7dfdda6f9f414591bd9f8bd093b1f9af" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"27d90c9c74ea44e5bef8acc3639a72b3" -> "7dfdda6f9f414591bd9f8bd093b1f9af" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4243f60e531a49c6af0fe0eff21b3c89" -> "7dfdda6f9f414591bd9f8bd093b1f9af" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"6797e79bb3cc4fa195ef95a0cd962d5c" -> "7dfdda6f9f414591bd9f8bd093b1f9af" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
